@@ -1,27 +1,7 @@
 version: '3'
 services:
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    ports:
-      - 5001:5000
-    volumes:
-      - backend-data:/app
-    depends_on:
-      - database
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    ports:
-      - 3001:3000
-    volumes:
-      - frontend-data:/app
-    depends_on:
-      - backend
   database:
-    image: postgres:latest
+    image: postgres:13.0-alpine
     ports:
       - 5433:5432
     environment:
@@ -29,9 +9,47 @@ services:
       - POSTGRES_PASSWORD=abcd1234
       - POSTGRES_DB=mydb
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      mynet:
+        aliases:
+          - database
+    hostname: database
+    command: postgres -c 'max_connections=200'
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 5001:5000
+    volumes:
+      - ./backend:/app 
+    depends_on:
+      - database
+    networks:
+      mynet:
+        aliases:
+          - backend
+    
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3001:3000
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - backend
+    networks:
+      mynet:
+        aliases:
+          - frontend
+
+networks:
+  mynet:
+    driver: bridge
 
 volumes:
-  backend-data:
-  frontend-data:
-  db-data:
+  pgdata:
