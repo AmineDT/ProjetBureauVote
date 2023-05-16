@@ -83,8 +83,7 @@ DATABASES = {
         'USER': 'uic',
         'PASSWORD': 'abcd1234',
         'HOST': 'database',
-        'PORT': 5433,
-        'CONN_MAX_AGE': 30,
+        'PORT': 5432,
     }
 }
 
@@ -150,3 +149,5 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ],
 }
+
+ALLOWED_HOSTS = ['localhost']
