@@ -57,7 +57,7 @@ ROOT_URLCONF = "backend.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, '..', 'frontend', 'build')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -151,3 +151,16 @@ REST_FRAMEWORK = {
 }
 
 ALLOWED_HOSTS = ['localhost']
+
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    '/app/build/static/',
+]
+
+# Serve React app from Django's static files directory in development
+if DEBUG:
+    STATICFILES_DIRS.append(os.path.join(BASE_DIR, 'frontend', 'build', 'static'))
+else:
+    STATICFILES_DIRS.append(os.path.join(BASE_DIR, 'frontend', 'build'))

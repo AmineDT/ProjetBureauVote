@@ -16,8 +16,5 @@ RUN pip install -r requirements.txt
 # Copy the project files
 COPY . .
 
-# Collect static files
-RUN python manage.py collectstatic --no-input
-
 # Set the command to run the server
 CMD python manage.py runserver 0.0.0.0:8000
