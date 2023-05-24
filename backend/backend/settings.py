@@ -39,18 +39,25 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'rest_framework',
+    'corsheaders',
     'api',
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3001',
+]
+
 
 ROOT_URLCONF = "backend.urls"
 
@@ -153,3 +160,15 @@ REST_FRAMEWORK = {
 ALLOWED_HOSTS = ['localhost']
 
 
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',  # Include this if you want to use session-based authentication
+        'rest_framework.authentication.TokenAuthentication',    # Include this if you want to use token-based authentication
+        # Add other authentication classes if needed
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',           # Include this if you want to require authentication for all views
+        # Add other permission classes if needed
+    ],
+}

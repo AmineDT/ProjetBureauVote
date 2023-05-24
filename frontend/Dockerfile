@@ -16,8 +16,8 @@ COPY . .
 # Build the React app
 RUN npm run build
 
-# Serve the app with a static server
-CMD ["npx", "serve", "-s", "build", "-l", "3000"]
+# Start the React development server
+CMD ["npm", "start"]
 
 # Expose the port
 EXPOSE 3000
