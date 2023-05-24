@@ -23,15 +23,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - 5001:8000
-    volumes:
-      - ./backend:/app
-      - ./frontend/build:/app/build
     depends_on:
       - database
     networks:
-      mynet:
-        aliases:
-          - backend
+      - mynet
     stdin_open: true
     tty: true
     command: bash -c "python manage.py makemigrations && python manage.py migrate && echo \"from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username='admin').exists() or User.objects.create_superuser('admin', 'admin@uic.com', 'abcd1234')\" | python manage.py shell && python manage.py runserver 0.0.0.0:8000"
@@ -43,7 +38,7 @@ services:
     ports:
       - 3001:3000
     volumes:
-      - ./frontend:/app
+      - ./frontend:/app/frontend
     depends_on:
       - backend
     networks:

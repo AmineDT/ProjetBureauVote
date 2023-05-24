@@ -5,7 +5,7 @@ FROM python:3.9
 RUN apt-get update && apt-get install -y netcat
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /app/backend
 
 # Copy the requirements file
 COPY requirements.txt .
