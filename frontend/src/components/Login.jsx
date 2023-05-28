@@ -7,22 +7,15 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await axios.post('/api/auth/token/', {
+      const response = await axios.post('/api/auth/login/', {
         username: username,
         password: password,
       });
-
-      // Store the authentication token and user ID
-      const { token, user_id } = response.data;
-      localStorage.setItem('token', token);
-      localStorage.setItem('user_id', user_id);
-
-      // Redirect to the authenticated page or perform any other necessary actions
-      // ...
+      console.log(response.data); // Authentication successful
+      // Redirect or perform other actions upon successful login
     } catch (error) {
-      console.error(error);
+      console.error(error.response.data); // Invalid credentials
     }
   };
 
