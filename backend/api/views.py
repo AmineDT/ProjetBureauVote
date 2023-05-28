@@ -5,7 +5,7 @@ from api.serializers import VoterSerializer, CandidateSerializer
 from django.contrib.auth import authenticate, login
 from rest_framework.response import Response
 from rest_framework import views, status
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.authentication import BasicAuthentication
 
 
 
@@ -19,12 +19,8 @@ class CandidateViewSet(viewsets.ModelViewSet):
     queryset = Candidate.objects.all()
     serializer_class = CandidateSerializer
 
-class CsrfExemptSessionAuthentication(SessionAuthentication):
-    def enforce_csrf(self, request):
-        return  # To not perform the csrf check previously happening
-
 class LoginView(views.APIView):
-    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
+    authentication_classes = (BasicAuthentication)
     permission_classes = [AllowAny]
     
     def post(self, request):
