@@ -1,6 +1,7 @@
 from django.urls import include, path
 from rest_framework import routers
-from api.views import VoterViewSet, CandidateViewSet, VoterAuthTokenView
+from api.views import VoterViewSet, CandidateViewSet
+from .views import VoterAuthTokenView
 
 router = routers.DefaultRouter()
 router.register('users', VoterViewSet)
