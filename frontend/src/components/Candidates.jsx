@@ -17,7 +17,7 @@ const Candidates = () => {
       <ul>
         {candidates.map(candidate => (
           <li key={candidate.id}>
-            {candidate.name} - Votes: {candidate.votes}
+            {candidate.name} - Votes: {candidate.vote_count}
           </li>
         ))}
       </ul>

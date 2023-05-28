@@ -4,7 +4,7 @@ import Navbar from './components/NavBar';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import Users from './components/Users';
+import Login from './components/Login';
 import Candidates from './components/Candidates';
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
         <Route exact path="/" component={Home} />
         <Route path="/about" component={About} />
         <Route path="/contact" component={Contact} />
-        <Route path="/users" component={Users} />
+        <Route path="/login" component={Login} />
         <Route path="/candidates" component={Candidates} />
       </Switch>
     </Router>
