@@ -4,7 +4,7 @@ const AuthenticatedPage = ({ username }) => {
   return (
     <div>
       <h1>Welcome, {username}!</h1>
-      {/* Add your content for the authenticated page */}
+      {/* Display other authenticated content */}
     </div>
   );
 };

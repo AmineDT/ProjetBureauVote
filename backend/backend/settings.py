@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-w!bgr-2-_ysli*80=-p&)ehnal8eybr6^u_4mlkb6w55m5qgbh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['frontend', 'localhost']
+ALLOWED_HOSTS = ['frontend', 'localhost', 'backend']
 
 
 # Application definition
@@ -64,7 +64,6 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [os.path.join(BASE_DIR, '..', 'frontend', 'build')],
-        "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.debug",
@@ -143,17 +142,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-    ],
-}
-
-
-REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',  # Include this if you want to use session-based authentication
         'rest_framework.authentication.TokenAuthentication',    # Include this if you want to use token-based authentication
@@ -164,3 +152,6 @@ REST_FRAMEWORK = {
         # Add other permission classes if needed
     ],
 }
+
+CSRF_COOKIE_NAME = 'csrftoken'
+CSRF_HEADER_NAME = 'HTTP_X_CSRFTOKEN'
