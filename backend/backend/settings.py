@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-w!bgr-2-_ysli*80=-p&)ehnal8eybr6^u_4mlkb6w55m5qgbh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['frontend']
+ALLOWED_HOSTS = ['frontend', 'localhost']
 
 
 # Application definition
@@ -54,9 +54,8 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3001',
-]
+CORS_ORIGIN_ALLOW_ALL = True
+
 
 
 ROOT_URLCONF = "backend.urls"
@@ -142,10 +141,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CORS_ALLOWED_ORIGINS = [
-    'http://frontend:3000',
-    'http://localhost:3000',  # For local development
-]
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
@@ -156,9 +151,6 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ],
 }
-
-ALLOWED_HOSTS = ['localhost']
-
 
 
 REST_FRAMEWORK = {
